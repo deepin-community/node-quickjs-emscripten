@@ -1,0 +1,5 @@
+@types/node
+@types/fs-extra
+@types/mocha
+ts-node
+source-map-support
