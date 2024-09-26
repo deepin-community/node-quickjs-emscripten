@@ -1,0 +1,2 @@
+mkdir ts/generated/
+make dist

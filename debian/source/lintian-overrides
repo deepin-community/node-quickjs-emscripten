@@ -1,0 +1,4 @@
+# Embedded as component
+source-ships-excluded-file quickjs/* [debian/copyright:*]
+# data
+very-long-line-length-in-source-file * [quickjs/libbf.c:*]

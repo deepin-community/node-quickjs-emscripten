@@ -1,0 +1,4 @@
+exclude-examples-imports-tests.patch
+fix-makefile.patch
+exclude-debug-variant.patch
+generate-cjs.patch

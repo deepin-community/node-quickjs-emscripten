@@ -1,0 +1,15 @@
+version=4
+opts=\
+repacksuffix=+dfsg,\
+dversionmangle=auto,\
+filenamemangle=s/.+\/v?(\d\S+)@ARCHIVE_EXT@/quickjs-emscripten-$1\.tar\.gz/ \
+ https://github.com/justjake/quickjs-emscripten/tags .*/v?(\d\S+)\.tar\.gz group
+
+opts=\
+component=quickjs,\
+mode=git,\
+date=%Y%m%d%H,\
+dversionmangle=auto,\
+pgpmode=none,\
+pretty=%cd \
+ https://github.com/bellard/quickjs.git HEAD ignore

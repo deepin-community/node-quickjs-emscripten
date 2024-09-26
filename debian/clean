@@ -1,0 +1,4 @@
+build/
+ts/generated/
+dist/
+ts/*.js

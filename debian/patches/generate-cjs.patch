@@ -1,0 +1,46 @@
+Generates cjs instead of esm
+--- a/ts/esmHelpers.ts
++++ b/ts/esmHelpers.ts
+@@ -1,7 +1,7 @@
+ /** Typescript thinks import('...js/.d.ts') needs mod.default.default */
+ function fakeUnwrapDefault<T>(mod: { default: T }): T {
+   // console.log("fakeUnwrapDefault", mod)
+-  return mod as T
++  return mod.default as T
+ }
+ 
+ /** Typescript thinks import('...ts') doesn't need mod.default.default, but does */
+--- a/ts/variants.ts
++++ b/ts/variants.ts
+@@ -134,7 +134,7 @@
+   },
+   async importModuleLoader() {
+     const mod = await import("./generated/emscripten-module.WASM_RELEASE_SYNC.js")
+-    return unwrapJavascript(mod).default
++    return unwrapJavascript(mod)
+   },
+ }
+ 
+@@ -149,6 +149,6 @@
+   },
+   async importModuleLoader() {
+     const mod = await import("./generated/emscripten-module.WASM_RELEASE_ASYNCIFY.js")
+-    return unwrapJavascript(mod).default
++    return unwrapJavascript(mod)
+   },
+ }
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -12,9 +12,9 @@
+     /* Basic Options */
+     "incremental": true /* Enable incremental compilation */,
+ 
+-    "target": "ES2021" /* Node 16+ per https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping */,
+-    "module": "nodenext" /* Some imports are really imports: https://www.typescriptlang.org/docs/handbook/esm-node.html */,
+-    "moduleResolution": "nodenext" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
++    "target": "ES2020" /* Node 14+ per https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping */,
++    "module": "CommonJS" /* Some imports are really imports: https://www.typescriptlang.org/docs/handbook/esm-node.html */,
++    "moduleResolution": "Node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
+ 
+     "lib": ["ES2021", "dom"] /* Specify library files to be included in the compilation. */,
+     "allowJs": true /* Allow javascript files to be compiled. */,
